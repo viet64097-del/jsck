@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoneyCare - Quản lý chi tiêu cá nhân</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Đồ án JavaScript cơ bản</p>
+      <h1>MoneyCare</h1>
+      <p class="subtitle">Ứng dụng quản lý thu chi cá nhân với HTML, CSS, JavaScript và Local Storage.</p>
+    </div>
+    <button id="seedDataBtn" class="ghost-button" type="button">Nạp dữ liệu mẫu</button>
+  </header>
+
+  <main class="app-shell">
+    <section class="panel form-panel" aria-labelledby="formTitle">
+      <h2 id="formTitle">Thêm giao dịch</h2>
+      <form id="transactionForm">
+        <div class="field">
+          <label for="title">Nội dung</label>
+          <input id="title" name="title" type="text" placeholder="VD: Lương tháng 5" required>
+        </div>
+
+        <div class="two-columns">
+          <div class="field">
+            <label for="amount">Số tiền (VND)</label>
+            <input id="amount" name="amount" type="number" min="1000" step="1000" placeholder="500000" required>
+          </div>
+          <div class="field">
+            <label for="date">Ngày</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+        </div>
+
+        <div class="two-columns">
+          <div class="field">
+            <label for="type">Loại</label>
+            <select id="type" name="type">
+              <option value="income">Thu nhập</option>
+              <option value="expense">Chi tiêu</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category">Danh mục</label>
+            <select id="category" name="category"></select>
+          </div>
+        </div>
+
+        <button class="primary-button" type="submit">Lưu giao dịch</button>
+        <p id="formMessage" class="form-message" role="status"></p>
+      </form>
+    </section>
+
+    <section class="summary-grid" aria-label="Thống kê tổng quan">
+      <article class="stat-card income">
+        <span>Tổng thu</span>
+        <strong id="totalIncome">0 VND</strong>
+      </article>
+      <article class="stat-card expense">
+        <span>Tổng chi</span>
+        <strong id="totalExpense">0 VND</strong>
+      </article>
+      <article class="stat-card balance">
+        <span>Số dư</span>
+        <strong id="balance">0 VND</strong>
+      </article>
+    </section>
+
+    <section class="panel tools-panel" aria-labelledby="toolsTitle">
+      <div>
+        <p class="eyebrow">Bộ lọc</p>
+        <h2 id="toolsTitle">Tìm kiếm và phân tích</h2>
+      </div>
+      <div class="tool-grid">
+        <div class="field">
+          <label for="searchInput">Tìm theo nội dung</label>
+          <input id="searchInput" type="search" placeholder="Nhập từ khóa...">
+        </div>
+        <div class="field">
+          <label for="filterType">Lọc theo loại</label>
+          <select id="filterType">
+            <option value="all">Tất cả</option>
+            <option value="income">Thu nhập</option>
+            <option value="expense">Chi tiêu</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="budgetInput">Ngân sách chi tiêu</label>
+          <input id="budgetInput" type="number" min="0" step="10000" placeholder="VD: 5000000">
+        </div>
+        <button id="clearAllBtn" class="danger-button" type="button">Xóa tất cả</button>
+      </div>
+      <p id="budgetStatus" class="budget-status">Nhập ngân sách để xem cảnh báo chi tiêu.</p>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel" aria-labelledby="listTitle">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Danh sách</p>
+            <h2 id="listTitle">Giao dịch gần đây</h2>
+          </div>
+          <span id="transactionCount" class="count-badge">0 mục</span>
+        </div>
+        <div id="emptyState" class="empty-state">Chưa có giao dịch nào. Hãy thêm giao dịch đầu tiên.</div>
+        <ul id="transactionList" class="transaction-list"></ul>
+      </section>
+
+      <aside class="panel" aria-labelledby="chartTitle">
+        <p class="eyebrow">Biểu đồ</p>
+        <h2 id="chartTitle">Chi tiêu theo danh mục</h2>
+        <div id="categoryChart" class="chart"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
