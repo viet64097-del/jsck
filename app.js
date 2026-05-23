@@ -253,7 +253,7 @@ function updateBudgetStatus(totalExpense) {
 
 function renderApp() {
   const filteredData = filterTransactions();
-  renderSummary(filteredData);
+  renderSummary(transactions);
   renderTransactions(filteredData);
   renderChart(filteredData);
 }
